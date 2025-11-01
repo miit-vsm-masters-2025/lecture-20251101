@@ -1,0 +1,9 @@
+services:
+  kafka:
+    image: apache/kafka:4.1.0
+    ports:
+      - "9092:9092"
+    volumes:
+      - kafka_data:/var/lib/kafka/data
+volumes:
+  kafka_data:
