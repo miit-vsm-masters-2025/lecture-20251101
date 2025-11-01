@@ -5,12 +5,20 @@ services:
 #      - "127.0.0.1:6379:6379"
 #    volumes:
 #      - valkey_data:/data
-  kafka:
-    image: apache/kafka:4.1.0
+#  kafka:
+#    image: apache/kafka:4.1.0
+#    ports:
+#      - "9092:9092"
+#    volumes:
+#      - kafka_data:/var/lib/kafka/data
+  rabbitmq:
+    image: rabbitmq:4.2.0-management
     ports:
-      - "9092:9092"
+      - 5672:5672
+      - 15672:15672
     volumes:
-      - kafka_data:/var/lib/kafka/data
+      - rabbit_data:/var/lib/rabbitmq
 volumes:
   kafka_data:
   valkey_data:
+  rabbit_data:
