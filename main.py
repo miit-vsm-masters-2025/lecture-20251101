@@ -1,11 +1,12 @@
-import valkey
+from kafka import KafkaConsumer
 
-valkey_connection = valkey.Valkey(host='localhost', port=6379, db=0)
+consumer = KafkaConsumer(
+    'test',
+    bootstrap_servers='localhost:9092',
+    auto_offset_reset='earliest',
+    enable_auto_commit=True
+)
 
-def main():
-    valkey_connection.lpush("test_queue", "Hello")
-    print("Push successful!")
-
-
-if __name__ == "__main__":
-    main()
+print("Starting Kafka consumer...")
+for message in consumer:
+    print(f"Received message: {message.value.decode('utf-8')}")
